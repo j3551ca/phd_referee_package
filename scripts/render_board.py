@@ -38,7 +38,8 @@ for i,(uni,program,deadline,guidance,notes,status,invitations) in enumerate(rows
     # Split-flap-inspired fine center rule; text stays above and below for readability.
     parts.append(f'<path d="M25 {y+33}H1685" stroke="#111921" stroke-width="1" opacity="0.6"/>')
     text(38,y+27,uni.upper(),20,'#ffffff','600',0.7)
-    display = 'Program to be confirmed' if program == 'TBD' else program.split('<br>')[0].replace('DPhil in ', '').replace('PhD', '').strip(' —')
+    plain_program = re.sub(r'\[([^]]+)\]\([^)]+\)', r'\1', program)
+    display = 'Program to be confirmed' if plain_program == 'TBD' else plain_program.replace('DPhil in ', '').replace('PhD', '').strip(' —')
     import textwrap
     wrapped = textwrap.wrap(display, width=43)
     for j, line in enumerate(wrapped[:2]):
@@ -72,7 +73,7 @@ readme='''# Jessica M. Caleta · PhD referee package
 
 ![PhD application board with universities, deadlines and current application statuses](assets/application-board.gif)
 
-[View the still board](assets/application-board.svg) · The decorative header flips once. All program information stays still.
+[View the still board](assets/application-board-still.png) · A few letter cards flip at a time, with long pauses. Deadlines stay still; the full table below is always readable.
 
 Welcome, and thank you for supporting my autumn 2027 PhD applications. This page is the central reference for my program choices, deadlines, and application progress. The table below includes the official instructions for referees. Application status does not indicate whether a reference letter has been submitted.
 
