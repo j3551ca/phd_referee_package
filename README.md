@@ -6,7 +6,7 @@
 <a href="Program_Info.md"><img src="assets/program-guide-sign.png" alt="Program guide — deadlines and references" width="32%"></a>
 </p>
 
-![PhD application board — click to jump to linked programs and guidance](assets/application-board.gif)
+[![PhD application board — click to jump to linked programs and guidance](assets/application-board.gif)](#programs-deadlines--recommendation-letters)
 
 Welcome, and thank you for supporting my autumn 2027 PhD applications. This page is the central reference for my program choices, deadlines, and application progress. The table below links to the best official recommendation-letter guidance available; applicant-facing pages are labeled. Application status does not indicate whether a recommendation letter has been submitted. 
 
