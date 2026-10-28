@@ -2,9 +2,7 @@
 
 Jessica M. Caleta · Autumn 2027 entry · Updated 28 October 2026
 
-**Deadline:** Please submit both the application and recommendation letters by the listed deadline unless the notes specify otherwise. Dates without a verified cutoff time are shown as published, not converted from an assumed midnight.
-
-**Time zones:** PT means B.C./Vancouver Pacific time (UTC−7), and CT means Saskatchewan Central Standard Time (UTC−6). These labels reflect the referees’ locations. B.C. now remains on UTC−7, so PT here differs from California’s winter PST (UTC−8). [B.C. time guidance](https://www2.gov.bc.ca/gov/content/governments/celebrating-british-columbia/daylight-saving-time) · [Saskatchewan time guidance](https://www.timeanddate.com/time/zone/canada/saskatchewan).
+**Time zones:** B.C. now remains on UTC−7, so PT here differs from California’s winter PST (UTC−8). [B.C. time guidance](https://www2.gov.bc.ca/gov/content/governments/celebrating-british-columbia/daylight-saving-time) · [Saskatchewan time guidance](https://www.timeanddate.com/time/zone/canada/saskatchewan).
 
 **Application status:** Use “Not started”, “In progress”, “Submitted (date)”, “Withdrawn”, or “Not recorded”. Application submission and reference submission are separate actions.
 
