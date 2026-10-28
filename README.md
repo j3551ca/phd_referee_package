@@ -14,12 +14,6 @@ Welcome, and thank you for supporting my autumn 2027 PhD applications. This page
 
 Jessica M. Caleta · Autumn 2027 entry · Updated 28 October 2026
 
-**Time zones:** B.C. now remains on UTC−7, so PT here differs from California’s winter PST (UTC−8). [B.C. time guidance](https://www2.gov.bc.ca/gov/content/governments/celebrating-british-columbia/daylight-saving-time) [S](https://www.timeanddate.com/time/zone/canada/saskatchewan)
-
-**Application status:** Use “In progress”, “Submitted (date)”, “Withdrawn”, or “Not recorded”. Application submission and recommendation letter submission are separate actions.
-
-**Recommendation letter link:** Use only “Sent”, “Not sent”, or “Not recorded”. “Not recorded” means the invitation status has not been updated. If a row says “Sent” and your invitation is missing, please check spam and contact Jessica for a resend. This tracks invitation links, not completed letters.
-
 
 | University | Program | Deadline | Recommendation letter guidelines | Application status | Recommendation letter link | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -35,10 +29,15 @@ Jessica M. Caleta · Autumn 2027 entry · Updated 28 October 2026
 | **Cambridge** | TBD | TBD — depends on program | [Official academic reference guidance (referee-facing)](https://www.postgraduate.study.cam.ac.uk/apply/how/academic-referees) | Not recorded | Not sent |  |
 | **Columbia** | TBD | TBD — depends on program | [GSAS recommendation requirements (applicant-facing)](https://www.gsas.columbia.edu/content/admissions-supporting-materials) | Not recorded | Not sent | [Letters should arrive by the program deadline, but GSAS allows up to two weeks afterward](https://www.gsas.columbia.edu/content/admissions-supporting-materials). |
 
-
 **Submitting letters:** Each university sends an individual submission link to each registered referee. Use that emailed link to upload the letter. The guidance links above are public instructions, not personal upload links.
 
-Cambridge and Columbia are included for planning only until their programs are finalized. This table is the source of truth for programs, deadlines, and application status. These will be updated here centrally as applications progress.
+Cambridge and Columbia are included for planning only until their programs are finalized. This table is the source of truth for programs, deadlines, and application status. Jessica will update it centrally as applications progress.
+
+**Time zones:** B.C. now remains on UTC−7, so PT here differs from California’s winter PST (UTC−8). [B.C. time guidance](https://www2.gov.bc.ca/gov/content/governments/celebrating-british-columbia/daylight-saving-time) · [Saskatchewan time guidance](https://www.timeanddate.com/time/zone/canada/saskatchewan).
+
+**Application status:** Use “Not started”, “In progress”, “Submitted (date)”, “Withdrawn”, or “Not recorded”. Application submission and reference submission are separate actions.
+
+**Recommendation letter link:** Use only “Sent”, “Not sent”, or “Not recorded”. “Not recorded” means the invitation status has not been updated. If a row says “Sent” and your invitation is missing, please check spam and contact Jessica for a resend. This tracks invitation links, not completed letters.
 
 <details>
 <summary>Updating the board</summary>

@@ -1,4 +1,4 @@
-"""Refresh navigation and the program table while preserving other README edits."""
+"""Sync the complete program guide while preserving README-only content."""
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 info=(ROOT/'Program_Info.md').read_text(encoding='utf-8')
@@ -21,7 +21,10 @@ first_break=readme.index('\n\n')
 board_line=next(line for line in readme.splitlines() if 'assets/application-board.gif' in line)
 board_at=readme.index(board_line)
 readme=readme[:first_break+2]+nav+'\n'+readme[board_at:]
-lines=readme.splitlines()
+# Program_Info.md owns the entire guide, including text before and after its table.
+lines=info.splitlines()
+assert lines[0].startswith('# '), "Expected a title in Program_Info.md"
+lines[0]='## Programs, deadlines & recommendation letters'
 start=next(i for i,line in enumerate(lines) if line.startswith('| University'))
 end=start
 while end<len(lines) and lines[end].startswith('|'):end+=1
@@ -31,5 +34,10 @@ for university,program,deadline,guidance,status,link_status,note in rows:
     note='' if note in ('—','') else note
     table.append('| '+' | '.join([f'**{university}**',program,deadline,guidance,status,link_status,note])+' |')
 lines[start:end]=table
-readme_path.write_text('\n'.join(lines)+'\n',encoding='utf-8')
-print(f'Restored three linked signs and refreshed {len(rows)} program rows; other README text preserved.')
+guide='\n'.join(lines).strip()
+section_start=readme.index('## Programs, deadlines & recommendation letters')
+section_end=readme.index('<details>',section_start)
+assert '<summary>Updating the board</summary>' in readme[section_end:]
+readme=readme[:section_start]+guide+'\n\n'+readme[section_end:]
+readme_path.write_text(readme,encoding='utf-8')
+print(f'Restored three linked signs and refreshed {len(rows)} program rows; complete guide synced; README-only content preserved.')
