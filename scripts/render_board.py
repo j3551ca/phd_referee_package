@@ -20,14 +20,38 @@ readme='''# Jessica M. Caleta · PhD referee package
 
 [Academic CV · PDF](Jessica_Caleta_Academic_CV.pdf) &nbsp; / &nbsp; [Research brief](Research_Brief.md) &nbsp; / &nbsp; [Program information](Program_Info.md)
 
-![PhD application board with universities, deadlines and current application statuses](assets/application-board.gif)
+[![PhD application board — click to jump to linked programs and guidance](assets/application-board.gif)](#programs-deadlines--reference-letters)
 
 [View the still board](assets/application-board-still.png) · Up to four values flip at once, with five-second pauses. Letters start together and settle independently. Deadlines stay still; the full table below is always readable.
 
 Welcome, and thank you for supporting my autumn 2027 PhD applications. This page is the central reference for my program choices, deadlines, and application progress. The table below includes the official instructions for referees. Application status does not indicate whether a reference letter has been submitted.
 
 '''
-readme += info.replace('# PhD Programs, Deadlines & Reference Letter Guide','## Programs, deadlines & reference letters',1)
+# Keep the editable seven-column source, but present a compact four-column view.
+start=info.index('| University |')
+lines=info[start:].splitlines()
+last=0
+for i,line in enumerate(lines):
+    if line.startswith('| '): last=i
+suffix='\n'.join(lines[last+1:])
+intro=info[:start].replace('# PhD Programs, Deadlines & Reference Letter Guide','## Programs, deadlines & reference letters',1)
+readme += intro
+readme += '| University / program | Deadline | Progress | Referee guidance |\n| --- | --- | --- | --- |\n'
+notes=[]
+for uni,program,deadline,guidance,note,status,invitations in rows:
+    links=re.findall(r'\[([^]]+)\]\(([^)]+)\)',guidance)
+    primary='[Instructions]('+links[0][1]+')' if links else guidance
+    anchor=re.sub(r'[^a-z0-9]+','-',uni.lower()).strip('-')+'-notes'
+    if note not in ('—','') or len(links)>1:
+        primary += '<br>[Notes & sources](#'+anchor+')'
+        extra=' · '.join('['+label+']('+url+')' for label,url in links[1:])
+        notes.append('### '+uni+' notes\n\n'+(note+'\n\n' if note not in ('—','') else '')+extra+'\n')
+    shown='Not recorded' if status in ('—','') else status
+    deadline=deadline.replace(' / ','<br>')
+    progress='**Application:** '+shown+'<br>**Links:** '+invitations
+    readme += '| **'+uni+'**<br>'+program+' | '+deadline+' | '+progress+' | '+primary+' |\n'
+readme += '\n'+suffix+'\n\n## Reference notes & sources\n\n'+'\n'.join(notes)
+
 readme += '''
 
 <details>
