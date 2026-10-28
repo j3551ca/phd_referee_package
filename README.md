@@ -8,8 +8,6 @@
 
 [![Click the flight board to open Program Info: program links, deadlines, and recommendation-letter guidance](assets/application-board.gif)](Program_Info.md)
 
-**[Click the flight board to open the full program table, clickable university links, deadlines, and recommendation-letter guidance →](Program_Info.md)**
-
 Welcome, and thank you for supporting my autumn 2027 PhD applications. This page is the central reference for my program choices, deadlines, and application progress. The Program Info table links to the best official recommendation-letter guidance available; applicant-facing pages are labeled. Application status does not indicate whether a recommendation letter has been submitted.
 
 <details>
