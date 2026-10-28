@@ -5,5 +5,5 @@
 <g fill="none" stroke="#111921" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"><path d="M52 40h28l13 13v43H52z M80 40v15h13 M61 65h22 M61 76h22 M61 87h15"/></g>
 <text x="132" y="69" fill="#ffffff" font-family="Arial,DejaVu Sans,sans-serif" font-size="31">Academic CV</text>
 <text x="133" y="98" fill="#f0c66a" font-family="Arial,DejaVu Sans,sans-serif" font-size="12" letter-spacing="0.6">QUALIFICATIONS &amp; PUBLICATIONS</text>
-<path d="M460 94V49 M442 67l18-18 18 18" fill="none" stroke="#f0c66a" stroke-width="8" stroke-linecap="square" stroke-linejoin="miter"/>
+<text x="460" y="75" text-anchor="middle" dominant-baseline="middle" fill="#f0c66a" font-family="DejaVu Sans,Arial,sans-serif" font-size="66">⬆</text>
 </svg>

@@ -5,5 +5,5 @@
 <g fill="none" stroke="#111921" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"><rect x="48" y="43" width="49" height="52" rx="3"/><path d="M48 57h49 M59 39v11 M85 39v11 M58 68h9 M77 68h10 M58 80h9 M77 80h10"/></g>
 <text x="132" y="69" fill="#ffffff" font-family="Arial,DejaVu Sans,sans-serif" font-size="31">Program guide</text>
 <text x="133" y="98" fill="#f0c66a" font-family="Arial,DejaVu Sans,sans-serif" font-size="12" letter-spacing="0.6">DEADLINES &amp; REFERENCES</text>
-<path d="M460 49v45 M442 76l18 18 18-18" fill="none" stroke="#f0c66a" stroke-width="8" stroke-linecap="square" stroke-linejoin="miter"/>
+<text x="460" y="75" text-anchor="middle" dominant-baseline="middle" fill="#f0c66a" font-family="DejaVu Sans,Arial,sans-serif" font-size="66">⬇</text>
 </svg>
