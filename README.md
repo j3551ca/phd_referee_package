@@ -1,6 +1,10 @@
 # Jessica M. Caleta · PhD referee package
 
-[Academic CV · PDF](Jessica_Caleta_Academic_CV.pdf) &nbsp; / &nbsp; [Research brief](Research_Brief.md) &nbsp; / &nbsp; [Program information](Program_Info.md)
+<p>
+<a href="Jessica_Caleta_Academic_CV.pdf"><img src="assets/academic-cv-sign.svg" alt="Academic CV — qualifications and publications" width="280"></a>
+<a href="Research_Brief.md"><img src="assets/research-brief-sign.svg" alt="Research brief — interests and experience" width="280"></a>
+<a href="Program_Info.md"><img src="assets/program-guide-sign.svg" alt="Program guide — deadlines and references" width="280"></a>
+</p>
 
 [![PhD application board — click to jump to linked programs and guidance](assets/application-board.gif)](#programs-deadlines--reference-letters)
 
