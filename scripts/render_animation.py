@@ -21,7 +21,7 @@ CW,CH,GAP=20,42,2
 STEP=CW+GAP
 COLS=[('university',40,12),('program',330,25),('deadline',910,23),('status',1440,12),('links',1730,12)]
 W=2030
-TOP=270
+TOP=230
 ROW=112
 H=TOP+len(rows)*ROW+104
 base=Image.new('RGB',(W,H),'#111921');d=ImageDraw.Draw(base)
@@ -32,9 +32,9 @@ label(40,86,'JESSICA M. CALETA',48,'#ffffff')
 label(40,148,'AUTUMN 2027  /  PROGRAMS, DEADLINES & REFERENCE GUIDANCE',22)
 for (kind,x,n),name in zip(COLS,['UNIVERSITY','PROGRAM','DEADLINE / PT/CT','APPLICATION','RECOMMENDATION']):
     if kind=='links':
-        label(x,219,name,19,'#f0c66a')
-        label(x,241,'LETTER LINK',19,'#f0c66a')
-    else:label(x,239,name,19,'#f0c66a')
+        label(x,179,name,19,'#f0c66a')
+        label(x,201,'LETTER LINK',19,'#f0c66a')
+    else:label(x,199,name,19,'#f0c66a')
 
 @lru_cache(maxsize=128)
 def card(ch):
