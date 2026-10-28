@@ -1,8 +1,14 @@
 # Jessica M. Caleta · PhD referee package
 
-![Academic CV — qualifications and publications](assets/academic-cv-sign.png) ![Research brief — interests and experience](assets/research-brief-sign.png) ![Program guide — deadlines and references](assets/program-guide-sign.png)
+<p align="center">
+<a href="Jessica_Caleta_Academic_CV.pdf"><img src="assets/academic-cv-sign.png" alt="Academic CV — qualifications and publications" width="32%"></a> 
+<a href="Research_Brief.md"><img src="assets/research-brief-sign.png" alt="Research brief — interests and experience" width="32%"></a> 
+<a href="Program_Info.md"><img src="assets/program-guide-sign.png" alt="Program guide — deadlines and references" width="32%"></a>
+</p>
 
-![PhD application board — click to jump to linked programs and guidance](assets/application-board.gif)
+[![PhD application board — click to jump to linked programs and guidance](assets/application-board.gif)](#programs-deadlines--recommendation-letters)
+
+[View the still board](assets/application-board-still.png) · Up to four values flip at once, with five-second pauses. Letters start together and settle independently. Deadlines stay still; the full table below is always readable.
 
 Welcome, and thank you for supporting my autumn 2027 PhD applications. This page is the central reference for my program choices, deadlines, and application progress. The table below links to the best official recommendation-letter guidance available; applicant-facing pages are labeled. Application status does not indicate whether a recommendation letter has been submitted.
 
