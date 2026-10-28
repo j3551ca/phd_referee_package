@@ -28,7 +28,7 @@ Jessica M. Caleta · Autumn 2027 entry · Updated 28 October 2026
 
 | University / program | Deadline | Progress | Referee guidance |
 | --- | --- | --- | --- |
-| **UC Berkeley**<br>[Computational Biology PhD](https://ccb.berkeley.edu/academics/computational-biology-phd) | 30 Nov 2026<br>9:59 p.m.* PT<br>10:59 p.m.* CT | **Application:** Not recorded<br>**Links:** Not recorded | [Instructions](https://ccb.berkeley.edu/node/175)<br>[Notes & sources](#uc-berkeley-notes) |
+| **UC Berkeley**<br>[Computational Biology PhD](https://ccb.berkeley.edu/academics/computational-biology-phd) | 30 Nov 2026<br>9:59 p.m. PT<br>10:59 p.m. CT | **Application:** Not recorded<br>**Links:** Not recorded | [Instructions](https://ccb.berkeley.edu/node/175)<br>[Notes & sources](#uc-berkeley-notes) |
 | **Oxford**<br>[DPhil in Genomic Medicine and Statistics](https://www.ox.ac.uk/admissions/graduate/courses/dphil-genomic-medicine-and-statistics) | 1 Dec 2026<br>5 a.m. PT<br>6 a.m. CT | **Application:** Not recorded<br>**Links:** Not recorded | [Instructions](https://www.ox.ac.uk/admissions/graduate/application-guide/references/information-for-referees)<br>[Notes & sources](#oxford-notes) |
 | **Harvard**<br>[Biomedical Informatics PhD — BIG track](https://bmiphd.hms.harvard.edu/welcome-big) | 1 Dec 2026<br>3 p.m. PT<br>4 p.m. CT | **Application:** Not recorded<br>**Links:** Not recorded | [Instructions](https://gsas.harvard.edu/apply/applying-degree-programs/letters-recommendation)<br>[Notes & sources](#harvard-notes) |
 | **MIT**<br>[Microbiology PhD](https://oge.mit.edu/programs/microbiology/) | 1 Dec 2026<br>9:59 p.m. PT<br>10:59 p.m. CT | **Application:** Not recorded<br>**Links:** Not recorded | [Instructions](https://microbiology.mit.edu/graduate-program/how-to-apply/)<br>[Notes & sources](#mit-notes) |
@@ -41,8 +41,6 @@ Jessica M. Caleta · Autumn 2027 entry · Updated 28 October 2026
 | **Columbia**<br>TBD | TBD — depends on program | **Application:** Not recorded<br>**Links:** Not recorded | [Instructions](https://www.gsas.columbia.edu/content/frequently-asked-questions)<br>[Notes & sources](#columbia-notes) |
 
 
-*Berkeley publishes “8:59 PST / 11:59 EST” without a.m./p.m. The displayed local conversions assume an evening cutoff. Confirm in the application portal.
-
 **Submitting letters:** Each university sends an individual submission link to each registered referee. Use that emailed link to upload the letter. The guidance links above are public instructions, not personal upload links.
 
 Cambridge and Columbia are included for planning only until their programs are finalized. This table is the source of truth for programs, deadlines, and application status. Jessica will update it centrally as applications progress.
@@ -51,7 +49,7 @@ Cambridge and Columbia are included for planning only until their programs are f
 
 ### UC Berkeley notes
 
-Late letter uploads are accepted, but review may proceed without them. Submit by the listed deadline. Evening cutoff interpretation needs portal confirmation.*
+Late letter uploads are accepted, but review may proceed without them. Submit by the listed deadline.
 
 
 

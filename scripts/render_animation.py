@@ -89,7 +89,7 @@ for i,(uni,program,deadline,guidance,notes,status,links) in enumerate(rows):
                 if ch!=' ':slots.append((pos,ch))
         groups[(i,kind)]=slots
 label(40,H-82,'TIMES: 24-HOUR PT/CT  ·  PT = B.C. (UTC-7)  ·  CT = SASKATCHEWAN (UTC-6)',18)
-label(40,H-48,'* BERKELEY CUTOFF NEEDS CONFIRMATION. SEE THE FULL GUIDANCE TABLE BELOW.',18)
+label(40,H-48,'SEE THE PROGRAM TABLE BELOW FOR OFFICIAL GUIDANCE AND REFERENCE LETTER NOTES.',18)
 base.save(ROOT/'assets/application-board-still.png')
 palette=base.quantize(colors=128)
 def quant(im):return im.quantize(palette=palette,dither=Image.Dither.NONE)
