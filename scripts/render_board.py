@@ -18,13 +18,11 @@ updated = re.search(r'Updated ([^\n]+)', info)
 updated = updated.group(1) if updated else 'See program guide'
 readme='''# Jessica M. Caleta · PhD referee package
 
-<table>
-<tr>
-<td align="center"><a href="Jessica_Caleta_Academic_CV.pdf"><img src="assets/academic-cv-sign.svg" alt="Academic CV — qualifications and publications" width="200"></a></td>
-<td align="center"><a href="Research_Brief.md"><img src="assets/research-brief-sign.svg" alt="Research brief — interests and experience" width="200"></a></td>
-<td align="center"><a href="Program_Info.md"><img src="assets/program-guide-sign.svg" alt="Program guide — deadlines and references" width="200"></a></td>
-</tr>
-</table>
+<p align="center">
+<a href="Jessica_Caleta_Academic_CV.pdf"><img src="assets/academic-cv-sign.png" alt="Academic CV — qualifications and publications" width="200"></a>&emsp;
+<a href="Research_Brief.md"><img src="assets/research-brief-sign.png" alt="Research brief — interests and experience" width="200"></a>&emsp;
+<a href="Program_Info.md"><img src="assets/program-guide-sign.png" alt="Program guide — deadlines and references" width="200"></a>
+</p>
 
 [![PhD application board — click to jump to linked programs and guidance](assets/application-board.gif)](#programs-deadlines--reference-letters)
 

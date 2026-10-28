@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="520" height="144" viewBox="0 0 520 144" role="img" aria-label="Research brief">
-<rect x="1" y="1" width="518" height="142" rx="7" fill="#111921" stroke="#3d4c58" stroke-width="2"/>
-<path d="M12 10h496" stroke="#293946" stroke-width="4"/>
-<circle cx="72" cy="72" r="43" fill="#f0c66a"/>
-<g fill="none" stroke="#111921" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"><path d="M60 40h24 M65 40v22L51 88q-4 9 8 9h26q12 0 8-9L79 62V40 M59 78h26"/><circle cx="68" cy="85" r="2"/><circle cx="79" cy="71" r="2"/></g>
-<text x="132" y="69" fill="#ffffff" font-family="Arial,DejaVu Sans,sans-serif" font-size="31">Research brief</text>
-<text x="133" y="98" fill="#f0c66a" font-family="Arial,DejaVu Sans,sans-serif" font-size="12" letter-spacing="0.6">INTERESTS &amp; EXPERIENCE</text>
-<text x="460" y="75" text-anchor="middle" dominant-baseline="middle" fill="#f0c66a" font-family="DejaVu Sans,Arial,sans-serif" font-size="66">➡</text>
-</svg>
