@@ -1,10 +1,3 @@
-
-<p align="center">
-<a href="Jessica_Caleta_Academic_CV.pdf"><img src="assets/academic-cv-sign.png" alt="Academic CV — qualifications and publications" width="32%"></a>
-<a href="Research_Brief.md"><img src="assets/research-brief-sign.png" alt="Research brief — interests and experience" width="32%"></a>
-<a href="Program_Info.md"><img src="assets/program-guide-sign.png" alt="Program guide — deadlines and references" width="32%"></a>
-</p>
-
 <p align="center">
 <a href="Jessica_Caleta_Academic_CV.pdf"><img src="assets/academic-cv-sign.png" alt="Academic CV — qualifications and publications" width="32%"></a>
 <a href="Research_Brief.md"><img src="assets/research-brief-sign.png" alt="Research brief — interests and experience" width="32%"></a>

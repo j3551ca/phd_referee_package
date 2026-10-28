@@ -18,10 +18,14 @@ nav='''<p align="center">
 </p>
 '''
 # A visual Markdown editor can flatten the linked HTML signs. Restore their source markup.
-first_break=readme.index('\n\n')
 board_line=next(line for line in readme.splitlines() if 'assets/application-board.gif' in line)
 board_at=readme.index(board_line)
-readme=readme[:first_break+2]+nav+'\n'+readme[board_at:]
+prefix=readme[:board_at]
+# Replace existing sign groups, independently of whether a title exists.
+prefix=re.sub(r'<p\b[^>]*>.*?</p>', lambda m: '' if re.search(r'assets/(?:academic-cv|research-brief|program-guide)-sign\.png',m[0]) else m[0], prefix, flags=re.S)
+# Also handle signs flattened into one Markdown image line by visual editors.
+prefix='\n'.join(line for line in prefix.splitlines() if not re.search(r'assets/(?:academic-cv|research-brief|program-guide)-sign\.png',line)).rstrip()
+readme=(prefix+'\n\n' if prefix else '')+nav+'\n'+readme[board_at:]
 # Keep the board link working even if a visual editor flattens its Markdown wrapper.
 linked_board='[![Click the flight board to open Program Info: program links, deadlines, and recommendation-letter guidance](assets/application-board.gif)](Program_Info.md)'
 readme=readme.replace(board_line,linked_board,1)
