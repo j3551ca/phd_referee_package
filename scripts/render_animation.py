@@ -28,10 +28,8 @@ base=Image.new('RGB',(W,H),'#111921');d=ImageDraw.Draw(base)
 def label(x,y,t,size=20,color='#c1ced8'):
     d.text((x,y),t,font=font(size),fill=color)
 label(40,30,'DEPARTURES → DOCTORAL RESEARCH',30,'#f0c66a')
-label(40,86,'JESSICA M. CALETA',38,'#ffffff')
+label(40,86,'JESSICA M. CALETA',44,'#ffffff')
 label(40,148,'AUTUMN 2027  /  PROGRAMS, DEADLINES & REFERENCE GUIDANCE',22)
-pending=sum(r[1]=='TBD' for r in rows)
-label(40,193,f'{len(rows)} UNIVERSITIES   /   {len(rows)-pending} SELECTED   /   {pending} TO BE CONFIRMED',18)
 for (kind,x,n),name in zip(COLS,['UNIVERSITY','PROGRAM','DEADLINE / PT/CT','APPLICATION','RECOMMENDATION']):
     if kind=='links':
         label(x,219,name,19,'#f0c66a')
