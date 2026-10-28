@@ -1,0 +1,27 @@
+name: Update application board
+on:
+  push:
+    branches: [main]
+    paths: [Program_Info.md, scripts/render_board.py]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: application-board
+  cancel-in-progress: false
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Render board and landing page
+        run: python3 scripts/render_board.py
+      - name: Save refreshed board
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md assets/application-board.svg
+          if ! git diff --cached --quiet; then
+            git commit -m "Refresh application board"
+            git push
+          fi
