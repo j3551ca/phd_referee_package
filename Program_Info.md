@@ -2,11 +2,6 @@
 
 Jessica M. Caleta · Autumn 2027 entry · Updated 28 October 2026
 
-**Time zones:** B.C. now remains on UTC−7, so PT here differs from California’s winter PST (UTC−8). [B.C. time guidance](https://www2.gov.bc.ca/gov/content/governments/celebrating-british-columbia/daylight-saving-time) · [Saskatchewan time guidance](https://www.timeanddate.com/time/zone/canada/saskatchewan).
-
-**Application status:** Use “Not started”, “In progress”, “Submitted (date)”, “Withdrawn”, or “Not recorded”. Application submission and reference submission are separate actions.
-
-**Recommendation letter link:** Use only “Sent”, “Not sent”, or “Not recorded”. “Not recorded” means the invitation status has not been updated. If a row says “Sent” and your invitation is missing, please check spam and contact Jessica for a resend. This tracks invitation links, not completed letters.
 
 | University | Program | Deadline (PT / CT) | Recommendation letter guidelines | Application status | Recommendation letter link | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -25,3 +20,9 @@ Jessica M. Caleta · Autumn 2027 entry · Updated 28 October 2026
 **Submitting letters:** Each university sends an individual submission link to each registered referee. Use that emailed link to upload the letter. The guidance links above are public instructions, not personal upload links.
 
 Cambridge and Columbia are included for planning only until their programs are finalized. This table is the source of truth for programs, deadlines, and application status. Jessica will update it centrally as applications progress.
+
+**Time zones:** B.C. now remains on UTC−7, so PT here differs from California’s winter PST (UTC−8). [B.C. time guidance](https://www2.gov.bc.ca/gov/content/governments/celebrating-british-columbia/daylight-saving-time) · [Saskatchewan time guidance](https://www.timeanddate.com/time/zone/canada/saskatchewan).
+
+**Application status:** Use “Not started”, “In progress”, “Submitted (date)”, “Withdrawn”, or “Not recorded”. Application submission and reference submission are separate actions.
+
+**Recommendation letter link:** Use only “Sent”, “Not sent”, or “Not recorded”. “Not recorded” means the invitation status has not been updated. If a row says “Sent” and your invitation is missing, please check spam and contact Jessica for a resend. This tracks invitation links, not completed letters.
