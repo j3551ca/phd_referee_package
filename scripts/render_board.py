@@ -1,71 +1,71 @@
 """Render the landing page from Program_Info.md using only Python's standard library."""
+
 from pathlib import Path
-from html import escape
 import re
 
+
 ROOT = Path(__file__).resolve().parents[1]
-info = (ROOT / 'Program_Info.md').read_text()
+info = (ROOT / "Program_Info.md").read_text(encoding="utf-8")
+
 rows = []
 for line in info.splitlines():
-    if not line.startswith('| '):
+    if not line.startswith("| "):
         continue
-    cells = [c.strip() for c in line.strip('|').split('|')]
-    if len(cells) != 7 or cells[0] in ('University', '---'):
+    cells = [cell.strip() for cell in line.strip("|").split("|")]
+    if len(cells) != 7 or cells[0] in ("University", "---"):
         continue
     rows.append(cells)
-assert len(rows) > 0, 'No program rows found'
-updated = re.search(r'Updated ([^\n]+)', info)
-updated = updated.group(1) if updated else 'See program guide'
-readme='''# Jessica M. Caleta · PhD referee package
 
-<p align="center">
-<a href="Jessica_Caleta_Academic_CV.pdf"><img src="assets/academic-cv-sign.png" alt="Academic CV — qualifications and publications" width="32%"></a> 
-<a href="Research_Brief.md"><img src="assets/research-brief-sign.png" alt="Research brief — interests and experience" width="32%"></a> 
-<a href="Program_Info.md"><img src="assets/program-guide-sign.png" alt="Program guide — deadlines and references" width="32%"></a>
-</p>
+assert rows, "No program rows found"
 
-[![PhD application board — click to jump to linked programs and guidance](assets/application-board.gif)](#programs-deadlines--reference-letters)
+readme = """# Jessica M. Caleta · PhD referee package
 
-[View the still board](assets/application-board-still.png) · Up to four values flip at once, with five-second pauses. Letters start together and settle independently. Deadlines stay still; the full table below is always readable.
+![Academic CV — qualifications and publications](assets/academic-cv-sign.png) ![Research brief — interests and experience](assets/research-brief-sign.png) ![Program guide — deadlines and references](assets/program-guide-sign.png)
 
-Welcome, and thank you for supporting my autumn 2027 PhD applications. This page is the central reference for my program choices, deadlines, and application progress. The table below includes the official instructions for referees. Application status does not indicate whether a reference letter has been submitted.
+![PhD application board — click to jump to linked programs and guidance](assets/application-board.gif)
 
-'''
-# Keep the editable seven-column source, but present a compact four-column view.
-start=info.index('| University |')
-lines=info[start:].splitlines()
-last=0
-for i,line in enumerate(lines):
-    if line.startswith('| '): last=i
-suffix='\n'.join(lines[last+1:])
-intro=info[:start].replace('# PhD Programs, Deadlines & Reference Letter Guide','## Programs, deadlines & reference letters',1)
+Welcome, and thank you for supporting my autumn 2027 PhD applications. This page is the central reference for my program choices, deadlines, and application progress. The table below links to the best official recommendation-letter guidance available; applicant-facing pages are labeled. Application status does not indicate whether a recommendation letter has been submitted.
+
+"""
+
+table_start = info.index("| University |")
+table_lines = info[table_start:].splitlines()
+last_table_line = max(
+    index for index, line in enumerate(table_lines) if line.startswith("| ")
+)
+suffix = "\n".join(table_lines[last_table_line + 1 :])
+intro = info[:table_start].replace(
+    "# PhD Programs, Deadlines & Recommendation Letter Guide",
+    "## Programs, deadlines & recommendation letters",
+    1,
+)
+# Keep the landing page concise; the full source guide retains the deadline note.
+intro = re.sub(r"\*\*Deadline:\*\*.*?\n\n", "", intro)
+intro = intro.replace("These labels reflect the referees’ locations. ", "")
 readme += intro
-readme += '| University / program | Deadline | Progress | Referee guidance |\n| --- | --- | --- | --- |\n'
-notes=[]
-for uni,program,deadline,guidance,note,status,invitations in rows:
-    links=re.findall(r'\[([^]]+)\]\(([^)]+)\)',guidance)
-    primary='[Instructions]('+links[0][1]+')' if links else guidance
-    anchor=re.sub(r'[^a-z0-9]+','-',uni.lower()).strip('-')+'-notes'
-    if note not in ('—','') or len(links)>1:
-        primary += '<br>[Notes & sources](#'+anchor+')'
-        extra=' · '.join('['+label+']('+url+')' for label,url in links[1:])
-        notes.append('### '+uni+' notes\n\n'+(note+'\n\n' if note not in ('—','') else '')+extra+'\n')
-    shown='Not recorded' if status in ('—','') else status
-    deadline=deadline.replace(' / ','<br>')
-    progress='**Application:** '+shown+'<br>**Links:** '+invitations
-    readme += '| **'+uni+'**<br>'+program+' | '+deadline+' | '+progress+' | '+primary+' |\n'
-readme += '\n'+suffix+'\n\n## Reference notes & sources\n\n'+'\n'.join(notes)
 
-readme += '''
+readme += (
+    "| University | Program | Deadline | Recommendation letter guidelines | "
+    "Application status | Reference link status | Notes |\n"
+    "| --- | --- | --- | --- | --- | --- | --- |\n"
+)
 
-<details>
-<summary>Updating the board</summary>
+for university, program, deadline, guidance, status, link_status, note in rows:
+    note = "" if note in ("—", "") else note
+    readme += (
+        f"| **{university}** | {program} | {deadline.replace(' / ', '<br>')} | "
+        f"{guidance} | {status} | {link_status} | {note} |\n"
+    )
 
-Edit the **Application status** and **Reference links sent** columns in [Program_Info.md](Program_Info.md), then commit the change to `main`. Use “In progress”, “Submitted (date)”, or “Withdrawn”, as appropriate. Keep an unrecorded status as “—”. You can also update program choices, deadlines, and notes in the same file, including the date at the top.
+readme += f"\n{suffix}\n"
+readme += """
 
-GitHub Actions refreshes this landing page and its board after each edit. To regenerate locally, run `python3 scripts/render_board.py` followed by `python3 scripts/render_animation.py` (requires Pillow). The full table preserves the exact status wording and all guidance links.
+Updating the board
 
-</details>
-'''
-(ROOT/'README.md').write_text(readme)
-print(f'Rendered {len(rows)} programs from Program_Info.md')
+Edit the **Application status** and **Reference link status** columns in [Program_Info.md](Program_Info.md), then commit the change to `main`. For reference links, use only “Sent”, “Not sent”, or “Not recorded”. You can also update program choices, deadlines, and notes in the same file, including the date at the top.
+
+GitHub Actions refreshes this landing page and its board after each edit. To regenerate locally, run `uv run python scripts/render_board.py` followed by `uv run --with pillow python scripts/render_animation.py`. The full table preserves the exact status wording and all guidance links.
+"""
+
+(ROOT / "README.md").write_text(readme, encoding="utf-8")
+print(f"Rendered {len(rows)} programs from Program_Info.md")

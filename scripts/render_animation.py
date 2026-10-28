@@ -32,7 +32,7 @@ label(40,86,'JESSICA M. CALETA',38,'#ffffff')
 label(40,148,'AUTUMN 2027  /  PROGRAMS, DEADLINES & REFERENCE GUIDANCE',22)
 pending=sum(r[1]=='TBD' for r in rows)
 label(40,193,f'{len(rows)} UNIVERSITIES   /   {len(rows)-pending} SELECTED   /   {pending} TO BE CONFIRMED',18)
-for (kind,x,n),name in zip(COLS,['UNIVERSITY','PROGRAM','DEADLINE / PT/CT','APPLICATION','REFERENCE LINKS']):label(x,239,name,19,'#f0c66a')
+for (kind,x,n),name in zip(COLS,['UNIVERSITY','PROGRAM','DEADLINE / PT/CT','APPLICATION','REFERENCE LINK']):label(x,239,name,19,'#f0c66a')
 
 @lru_cache(maxsize=128)
 def card(ch):
@@ -52,7 +52,7 @@ def lines_for(value,width):
     return result
 
 groups={}
-for i,(uni,program,deadline,guidance,notes,status,links) in enumerate(rows):
+for i,(uni,program,deadline,guidance,status,links,notes) in enumerate(rows):
     y=TOP+i*ROW
     d.rounded_rectangle((24,y,W-24,y+ROW-10),radius=5,fill='#1b2732')
     prog=plain(program).replace('PhD','').replace('DPhil in ','').strip(' —')
@@ -89,7 +89,7 @@ for i,(uni,program,deadline,guidance,notes,status,links) in enumerate(rows):
                 if ch!=' ':slots.append((pos,ch))
         groups[(i,kind)]=slots
 label(40,H-82,'TIMES: 24-HOUR PT/CT  ·  PT = B.C. (UTC-7)  ·  CT = SASKATCHEWAN (UTC-6)',18)
-label(40,H-48,'SEE THE PROGRAM TABLE BELOW FOR OFFICIAL GUIDANCE AND REFERENCE LETTER NOTES.',18)
+label(40,H-48,'SEE THE PROGRAM TABLE BELOW FOR OFFICIAL GUIDANCE AND RECOMMENDATION LETTER NOTES.',18)
 base.save(ROOT/'assets/application-board-still.png')
 palette=base.quantize(colors=128)
 def quant(im):return im.quantize(palette=palette,dither=Image.Dither.NONE)
