@@ -1,5 +1,6 @@
 """Sync the complete program guide while preserving README-only content."""
 from pathlib import Path
+import re
 ROOT=Path(__file__).resolve().parents[1]
 info=(ROOT/'Program_Info.md').read_text(encoding='utf-8')
 readme_path=ROOT/'README.md'
@@ -8,7 +9,7 @@ rows=[]
 for line in info.splitlines():
     if not line.startswith('| '):continue
     cells=[cell.strip() for cell in line.strip('|').split('|')]
-    if len(cells)==7 and cells[0] not in ('University','---'):rows.append(cells)
+    if len(cells)==7 and cells[0] != 'University' and not all(re.fullmatch(r':?-+:?', c) for c in cells):rows.append(cells)
 assert rows, "No program rows found"
 nav='''<p align="center">
 <a href="Jessica_Caleta_Academic_CV.pdf"><img src="assets/academic-cv-sign.png" alt="Academic CV — qualifications and publications" width="32%"></a>

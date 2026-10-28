@@ -9,7 +9,7 @@ rows=[]
 for line in info.splitlines():
     if line.startswith('| '):
         cells=[c.strip() for c in line.strip('|').split('|')]
-        if len(cells)==7 and cells[0] not in ('University','---'):rows.append(cells)
+        if len(cells)==7 and cells[0] != 'University' and not all(re.fullmatch(r':?-+:?', c) for c in cells):rows.append(cells)
 
 def font(size):
     for name in ['DejaVuSansMono.ttf','/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf','/System/Library/Fonts/Menlo.ttc']:
