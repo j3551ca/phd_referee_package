@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install image renderers
-        run: python3 -m pip install Pillow CairoSVG
+        run: python3 -m pip install Pillow
       - name: Render board and landing page
         run: |
           python3 scripts/render_board.py
@@ -24,7 +24,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md assets/application-board.svg assets/application-board.gif assets/application-board-still.png
+          git add README.md assets/application-board.gif assets/application-board-still.png
           if ! git diff --cached --quiet; then
             git commit -m "Refresh application board"
             git push

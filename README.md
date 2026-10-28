@@ -4,7 +4,7 @@
 
 ![PhD application board with universities, deadlines and current application statuses](assets/application-board.gif)
 
-[View the still board](assets/application-board-still.png) · A few letter cards flip at a time, with long pauses. Deadlines stay still; the full table below is always readable.
+[View the still board](assets/application-board-still.png) · Up to four values flip at once, with five-second pauses. Letters start together and settle independently. Deadlines stay still; the full table below is always readable.
 
 Welcome, and thank you for supporting my autumn 2027 PhD applications. This page is the central reference for my program choices, deadlines, and application progress. The table below includes the official instructions for referees. Application status does not indicate whether a reference letter has been submitted.
 
@@ -46,6 +46,6 @@ Cambridge and Columbia are included for planning only until their programs are f
 
 Edit the **Application status** and **Reference links sent** columns in [Program_Info.md](Program_Info.md), then commit the change to `main`. Use “In progress”, “Submitted (date)”, or “Withdrawn”, as appropriate. Keep an unrecorded status as “—”. You can also update program choices, deadlines, and notes in the same file, including the date at the top.
 
-GitHub Actions refreshes this landing page and its board after each edit. To regenerate locally, run `python3 scripts/render_board.py` followed by `python3 scripts/render_animation.py` (requires Pillow and CairoSVG). The full table preserves the exact status wording and all guidance links.
+GitHub Actions refreshes this landing page and its board after each edit. To regenerate locally, run `python3 scripts/render_board.py` followed by `python3 scripts/render_animation.py` (requires Pillow). The full table preserves the exact status wording and all guidance links.
 
 </details>

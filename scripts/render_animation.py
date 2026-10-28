@@ -1,92 +1,136 @@
-"""Quiet split-flap board: dispersed card flips, long pauses, static deadlines."""
+"""Generate a consistent split-flap board with simultaneous, independently settling letters."""
 from pathlib import Path
-from io import BytesIO
-import sys, math
+import re, math, random, textwrap
+from functools import lru_cache
 from PIL import Image, ImageDraw, ImageFont, ImageEnhance, ImageChops
 ROOT=Path(__file__).resolve().parents[1]
-if len(sys.argv)>1:
-    base=Image.open(sys.argv[1]).convert('RGB')
-else:
-    import cairosvg
-    base=Image.open(BytesIO(cairosvg.svg2png(url=str(ROOT/'assets/application-board.svg')))).convert('RGB')
-font=None
-for name in ['DejaVuSansMono.ttf','/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf','/System/Library/Fonts/Menlo.ttc']:
-    try: font=ImageFont.truetype(name,17);break
-    except OSError: pass
-if font is None: raise RuntimeError('A monospace font is required')
+info=(ROOT/'Program_Info.md').read_text()
 rows=[]
-for line in (ROOT/'Program_Info.md').read_text().splitlines():
+for line in info.splitlines():
     if line.startswith('| '):
-        row=[x.strip() for x in line.strip('|').split('|')]
-        if len(row)==7 and row[0] not in ('University','---'):rows.append(row)
-CW,CH,GAP=17,29,2
+        cells=[c.strip() for c in line.strip('|').split('|')]
+        if len(cells)==7 and cells[0] not in ('University','---'):rows.append(cells)
 
-def card(char):
-    im=Image.new('RGB',(CW,CH),'#18232d');d=ImageDraw.Draw(im)
-    d.rounded_rectangle((0,0,CW-1,CH-1),radius=2,fill='#273642',outline='#354552')
-    d.text((CW/2,CH/2),char,font=font,anchor='mm',fill='#f2e8cd')
-    d.line((0,CH//2,CW,CH//2),fill='#0b1117',width=1)
+def font(size):
+    for name in ['DejaVuSansMono.ttf','/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf','/System/Library/Fonts/Menlo.ttc']:
+        try:return ImageFont.truetype(name,size)
+        except OSError:pass
+    raise RuntimeError('A monospace font is required')
+FONT=font(22)
+CW,CH,GAP=17,38,2
+STEP=CW+GAP
+COLS=[('university',40,13),('program',320,30),('deadline',920,23),('status',1390,14),('links',1700,14)]
+W=2010
+TOP=270
+ROW=146
+H=TOP+len(rows)*ROW+104
+base=Image.new('RGB',(W,H),'#111921');d=ImageDraw.Draw(base)
+def label(x,y,t,size=20,color='#c1ced8'):
+    d.text((x,y),t,font=font(size),fill=color)
+label(40,30,'DEPARTURES / DOCTORAL RESEARCH',30,'#f0c66a')
+label(40,86,'JESSICA M. CALETA',38,'#ffffff')
+label(40,148,'AUTUMN 2027  /  PROGRAMS, DEADLINES & REFERENCE GUIDANCE',22)
+pending=sum(r[1]=='TBD' for r in rows)
+label(40,193,f'{len(rows)} UNIVERSITIES   /   {len(rows)-pending} SELECTED   /   {pending} TO BE CONFIRMED',18)
+for (kind,x,n),name in zip(COLS,['UNIVERSITY','PROGRAM','DEADLINE / PT + CT','APPLICATION','REFERENCE LINKS']):label(x,239,name,19,'#f0c66a')
+
+@lru_cache(maxsize=128)
+def card(ch):
+    im=Image.new('RGB',(CW,CH),'#111921');q=ImageDraw.Draw(im)
+    q.rounded_rectangle((0,0,CW-1,CH-1),radius=2,fill='#293946',outline='#3d4c58')
+    q.text((CW/2,CH/2),ch,font=FONT,anchor='mm',fill='#f5edda')
+    q.line((0,CH//2,CW,CH//2),fill='#111921',width=1)
     return im
 
-groups={}
-for i,row in enumerate(rows):
-    y=264+i*76
-    for kind,x,val in [('university',38,row[0].upper()),('status',1180,'NOT RECORDED' if row[5] in ('—','') else row[5].upper()),('links',1430,row[6].upper())]:
-        # Retain long detailed statuses as typeset text; never truncate them into misleading cards.
-        if len(val)>12:continue
-        ImageDraw.Draw(base).rectangle((x,y+3,x+(216 if kind == 'university' else 238),y+61),fill=('#1b2732' if i%2==0 else '#18232d'))
-        slots=[]
-        for j,ch in enumerate(val):
-            pos=(x+j*(CW+GAP),y+9)
-            base.paste(card(ch),pos);slots.append((pos,ch))
-        groups[(i,kind)]=slots
-palette=base.quantize(colors=256)
-def quant(im):return im.quantize(palette=palette,dither=Image.Dither.NONE)
-frames=[quant(base)];durations=[5000]
-alphabet='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-def intermediate(ch):
-    return alphabet[(alphabet.index(ch)+9)%26] if ch in alphabet else ch
+def plain(s):return re.sub(r'\[([^]]+)\]\([^)]+\)',r'\1',s).replace('**','')
+def lines_for(value,width):
+    result=[]
+    for line in value.split('\n'):
+        result.extend(textwrap.wrap(line,width=width,break_long_words=False,break_on_hyphens=False) or [''])
+    assert len(result)<=3,f'Value exceeds cell height: {value}'
+    assert all(len(v)<=width for v in result),value
+    return result
 
-def flap(old,new,p):
+groups={}
+for i,(uni,program,deadline,guidance,notes,status,links) in enumerate(rows):
+    y=TOP+i*ROW
+    d.rounded_rectangle((24,y,W-24,y+ROW-10),radius=5,fill='#1b2732')
+    prog=plain(program).replace('PhD','').replace('DPhil in ','').strip(' —')
+    if program=='TBD':prog='TO BE CONFIRMED'
+    if '<br>' in deadline:
+        date,times=deadline.split('<br>',1)
+        dl=date+'\n'+times.replace(' / ','\n')
+    else:dl='TO BE CONFIRMED' if deadline.startswith('TBD') else deadline.split(' — ')[0]+'\nTIME UNCONFIRMED'
+    vals=[uni,prog,dl,'NOT RECORDED' if status in ('—','') else status,links]
+    for line_no in range(3):
+        # The row ruling and every character hinge occupy the exact same y coordinate.
+        hinge=y+9+line_no*42+CH//2
+        d.line((24,hinge,W-24,hinge),fill='#111921',width=1)
+    for (kind,x,width),val in zip(COLS,vals):
+        content=lines_for(plain(val).upper(),width)
+        slots=[]
+        for line_no in range(3):
+            line=content[line_no] if line_no<len(content) else ''
+            for j,ch in enumerate(line.ljust(width)):
+                pos=(x+j*STEP,y+9+line_no*42)
+                base.paste(card(ch),pos)
+                if ch!=' ':slots.append((pos,ch))
+        groups[(i,kind)]=slots
+label(40,H-82,'PT = B.C./VANCOUVER (UTC-7)    CT = SASKATCHEWAN (UTC-6)',18)
+label(40,H-48,'* BERKELEY CUTOFF NEEDS CONFIRMATION. SEE THE FULL GUIDANCE TABLE BELOW.',18)
+base.save(ROOT/'assets/application-board-still.png')
+palette=base.quantize(colors=128)
+def quant(im):return im.quantize(palette=palette,dither=Image.Dither.NONE)
+
+@lru_cache(maxsize=8192)
+def flap(old,new,phase):
+    p=phase/5
     a,b=card(old),card(new);mid=CH//2
     result=a.copy();result.paste(b.crop((0,0,CW,mid)),(0,0))
     if p<0.5:
         h=max(1,round(mid*math.cos(p*math.pi)))
         moving=a.crop((0,0,CW,mid)).resize((CW,h),Image.Resampling.LANCZOS)
-        moving=ImageEnhance.Brightness(moving).enhance(1-0.45*p*2)
+        moving=ImageEnhance.Brightness(moving).enhance(1-0.4*p*2)
         result.paste(moving,(0,mid-h))
     else:
         h=max(1,round((CH-mid)*math.sin((p-0.5)*math.pi)))
         moving=b.crop((0,mid,CW,CH)).resize((CW,h),Image.Resampling.LANCZOS)
-        moving=ImageEnhance.Brightness(moving).enhance(0.55+0.45*(p-0.5)*2)
+        moving=ImageEnhance.Brightness(moving).enhance(0.6+0.4*(p-0.5)*2)
         result.paste(moving,(0,mid))
-    ImageDraw.Draw(result).line((0,mid,CW,mid),fill='#080e13')
+    ImageDraw.Draw(result).line((0,mid,CW,mid),fill='#111921')
     return result
 
-sequence=[(0,'university'),(2,'links'),(4,'status'),(6,'university'),(8,'status'),(10,'links')]
-for key in sequence:
-    slots=groups.get(key)
-    if not slots:continue
-    duration=0.70+0.045*(len(slots)-1)
-    count=math.ceil(duration/0.07)+1
-    for n in range(count):
-        t=n*0.07;im=base.copy()
-        for j,(pos,ch) in enumerate(slots):
-            local=t-j*0.045
-            if 0<=local<0.70:
-                cycle=local/0.35
-                old,new=(ch,intermediate(ch)) if cycle<1 else (intermediate(ch),ch)
-                im.paste(flap(old,new,cycle%1),pos)
-        frames.append(quant(im));durations.append(70)
-    frames.append(quant(base));durations.append(10000)
+rng=random.Random(27)
+# No left-to-right offsets: all letters in each value start together.
+# Up to four dispersed values animate per round; deadlines remain reliably visible.
+rounds=[[(0,'university'),(3,'program'),(7,'status')],
+        [(2,'program'),(5,'links'),(9,'university'),(1,'status')],
+        [(6,'university'),(8,'program')],
+        [(4,'program'),(10,'links'),(1,'university'),(6,'status')]]
+frames=[quant(base)];durations=[3000]
+alphabet='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+for selected in rounds:
+    assert len(selected)<=4
+    specs=[]
+    for key in selected:
+        for pos,ch in groups.get(key,[]):
+            turns=rng.randint(3,6)
+            # Individual letters settle after different numbers of rotations, independently of position.
+            chars=[ch]+[rng.choice(alphabet) for _ in range(turns-1)]+[ch]
+            specs.append((pos,chars))
+    for n in range(6*6):
+        im=base.copy();turn=n//6;phase=n%6
+        for pos,chars in specs:
+            if turn<len(chars)-1:im.paste(flap(chars[turn],chars[turn+1],phase),pos)
+        frames.append(quant(im));durations.append(55)
+    frames.append(quant(base));durations.append(5000)
 path=ROOT/'assets/application-board.gif'
 frames[0].save(path,save_all=True,append_images=frames[1:],duration=durations,loop=0,disposal=1,optimize=True)
+# Verify that dates and times never move, and the sequence returns to the actual data.
 with Image.open(path) as gif:
-    first=gif.convert('RGB')
-    deadlines=first.crop((755,250,1160,1100))
+    first=gif.convert('RGB');region=(910,TOP,1370,TOP+len(rows)*ROW)
     for i in range(gif.n_frames):
         gif.seek(i)
-        assert ImageChops.difference(deadlines,gif.convert('RGB').crop((755,250,1160,1100))).getbbox() is None
+        assert ImageChops.difference(first.crop(region),gif.convert('RGB').crop(region)).getbbox() is None
     assert ImageChops.difference(first,gif.convert('RGB')).getbbox() is None
-base.save(ROOT/'assets/application-board-still.png')
-print(f'{len(frames)} frames, {sum(durations)/1000:.1f}s cycle, {path.stat().st_size:,} bytes. Deadline pixels unchanged.')
+print(f'{len(frames)} frames; {sum(durations)/1000:.1f}s cycle; {path.stat().st_size:,} bytes; max 4 values; deadlines static.')
